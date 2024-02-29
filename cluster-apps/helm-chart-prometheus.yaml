@@ -1,12 +1,3 @@
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
-metadata:
-  name: prometheus
-  namespace: flux
-spec:
-  interval: 5m
-  url: https://prometheus-community.github.io/helm-charts
----
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
@@ -21,7 +12,7 @@ spec:
       version: '25.14.x'
       sourceRef:
         kind: HelmRepository
-        name: prometheus
+        name: prometheus-community
       interval: 1m
   releaseName: prometheus
   install:
