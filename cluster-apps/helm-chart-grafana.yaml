@@ -39,7 +39,9 @@ spec:
         cert-manager.io/cluster-issuer: letsencrypt
       hosts:
         - mikael.cloud
+        - dev.mikael.cloud
       tls:
         - secretName: mikael.cloud
           hosts:
             - mikael.cloud
+            - dev.mikael.cloud
