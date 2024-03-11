@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: ingress-nginx
-      version: '4.9.x'
+      version: "4.9.x"
       sourceRef:
         kind: HelmRepository
         name: ingress-nginx
@@ -26,6 +26,12 @@ spec:
   driftDetection:
     mode: enabled
     ignore:
-    - paths: ["/spec/replicas"]
-      target:
-        kind: Deployment
+      - paths: ["/spec/replicas"]
+        target:
+          kind: Deployment
+  values:
+    controller:
+      replicaCount: 2
+      service:
+        annotations:
+          service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: /healthz
