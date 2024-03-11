@@ -38,10 +38,10 @@ spec:
         kubernetes.io/ingress.class: nginx
         cert-manager.io/cluster-issuer: letsencrypt
       hosts:
-        - mikael.cloud
+        #- mikael.cloud
         - dev.mikael.cloud
       tls:
         - secretName: mikael.cloud
           hosts:
-            - mikael.cloud
+            #- mikael.cloud
             - dev.mikael.cloud
