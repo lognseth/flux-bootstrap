@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: cert-manager
+  namespace: flux
+spec:
+  interval: 1m
+  timeout: 5m
+  chart:
+    spec:
+      chart: cert-manager
+      version: '1.14.x'
+      sourceRef:
+        kind: HelmRepository
+        name: jetstack
+      interval: 1m
+  releaseName: cert-manager
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  test:
+    enable: true
+  driftDetection:
+    mode: enabled
+    ignore:
+    - paths: ["/spec/replicas"]
+      target:
+        kind: Deployment
+  values:
+    installCRDs: true
+    podLabels:
+      azure.workload.identity/use: "true"
+    serviceAccount:
+      labels:
+        azure.workload.identity/use: "true"
