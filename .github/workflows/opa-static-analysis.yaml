@@ -1,0 +1,24 @@
+name: Lint Flux manifests
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+  push:
+    paths:
+      - cluster-apps/**
+      - helm-repos/**
+
+jobs:
+  Run-OPA-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Setup Conftest
+        uses: princespaghetti/setup-conftest@v1
+
+      - name: Run Conftest
+        run: conftest test file.yaml

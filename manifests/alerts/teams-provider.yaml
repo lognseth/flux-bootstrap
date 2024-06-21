@@ -1,0 +1,17 @@
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Provider
+metadata:
+  name: teams-webhook
+  namespace: flux
+spec:
+  type: msteams
+  secretRef:
+    name: teams-webhook-token
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: msteams-webhook
+  namespace: default
+stringData:
+  address: "https://xxx.webhook.office.com/..." # TODO: Update value
